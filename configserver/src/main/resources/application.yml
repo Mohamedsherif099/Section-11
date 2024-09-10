@@ -1,0 +1,46 @@
+spring:
+  application:
+    name: "configserver"
+  profiles:
+    active: git
+  #active: native
+  cloud:
+    config:
+      server:
+        git:
+          uri: "https://github.com/Mohamedsherif099/eazybytes-config.git"
+          username: "Mohamedsherif099"
+          password: "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"
+          default-label: main
+          timeout: 5
+          clone-on-start: true
+          force-pull: true
+
+        #native:
+            # search-locations: "classpath:/config"
+           #search-locations: "file:///D://Projects//Spring//Microservices//section6//Configuration-Properties"
+
+
+server:
+  port: 8071
+
+encrypt:
+  key: "404E635266556A586E3272357538782F413F4428472B4B6250645367566B5970"
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  health:
+    readiness-state:
+      enabled: true
+    liveness-state:
+      enabled: true
+  endpoint:
+    health:
+      probes:
+        enabled: true
+  metrics:
+    tags:
+      application: ${spring.application.name}
